@@ -40,7 +40,6 @@ function add(scheme) {
 
 function addStep(step, scheme_id) {
     return db('steps').insert({ scheme_id, ...step }).then(ids => {
-        console.log(ids);
         return findStepById(ids[0]);
     }).catch(err => {
         console.log(err);
