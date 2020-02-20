@@ -33,24 +33,18 @@ function findStepById(id) {
 function add(scheme) {
     return db('schemes').insert(scheme).then(ids => {
         return findById(ids[0]);
-    }).catch(err => {
-        console.log(err);
     });
 }
 
 function addStep(step, scheme_id) {
     return db('steps').insert({ scheme_id, ...step }).then(ids => {
         return findStepById(ids[0]);
-    }).catch(err => {
-        console.log(err);
     });
 }
 
 function update(changes, id) {
     return db('schemes').where({ id }).update(changes).then(count => {
         return findById(id);
-    }).catch(err => {
-        console.log(err);
     });
 }
 
@@ -58,10 +52,6 @@ function remove(id) {
     return findById(id).then(scheme => {
         return db('schemes').where({ id }).del().then(count => {
             return scheme;
-        }).catch(err => {
-            console.log(err);
         });
-    }).catch(err => {
-        console.log(err);
     });
 }
